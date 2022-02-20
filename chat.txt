@@ -1,0 +1,22 @@
+name: Check notification
+
+on:
+  push: {}
+  release: {}
+
+jobs:
+  success:
+    name: One with everything
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@master
+      - name: Microsoft Teams Notification
+        uses: Skitionek/notify-microsoft-teams@v1.0.4
+        if: always()
+        with:
+          webhook_url: https://romdhani.webhook.office.com/webhookb2/285a147d-7095-4590-bfe5-d74ef8cc8943@76ea0493-2f30-4c80-8ac2-28ef7f601251/IncomingWebhook/b777cfe06b6241e1a4f70426ca56ebf8/7cada548-c235-478f-a4f9-3d16dd98cb1f
+          needs: ${{ toJson(needs) }}
+          job: ${{ toJson(job) }}
+          steps: ${{ toJson(steps) }}
+          overwrite: "{title: `Hello`}"
+          dry_run: false

@@ -1,0 +1,31 @@
+name: 'notify-microsoft-teams'
+description: 'Microsoft Teams Notification for Github Actions'
+author: 'Skitionek'
+inputs:
+  webhook_url:
+    description: 'teams incoming webhook url'
+    required: false
+  raw:
+    description: 'JSON object to send to Microsoft Teams'
+    required: false
+  overwrite:
+    description: 'JSON like object to overwrite default message (executed with eval)'
+    required: false
+  job:
+    description: 'JSON parsed job context'
+    required: false
+  steps:
+    description: 'JSON parsed steps context'
+    required: false
+  needs:
+    description: 'JSON parsed needs context'
+    required: false
+  dry_run:
+    description: 'Do not actually send the message'
+    required: false
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
+branding:
+  icon: 'bell'
+  color: 'purple'

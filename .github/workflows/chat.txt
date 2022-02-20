@@ -1,0 +1,59 @@
+on: [push]
+
+jobs:
+  teams_job:
+    runs-on: ubuntu-latest
+    name: Job Microsoft Teams Notification
+    steps:
+      - uses: actions/checkout@master
+      - name: Microsoft Teams Notification
+        uses: skitionek/notify-microsoft-teams@master
+        if: always()
+        with:
+          webhook_url: ${{ secrets.MSTEAMS_WEBHOOK }}
+          raw: >-
+            {
+              "@type":"MessageCard",
+              "@context":"https://schema.org/extensions",
+              "summary":"Pipeline success!",
+              "themeColor":"3BD16F",
+              "title":"${{ github.repository }} pipeline success",
+              "sections":[
+                {
+                  "facts":[
+                    {
+                      "name":"Repository:",
+                      "value":"${{ github.repository }}"
+                    },
+                    {
+                      "name":"Branch:",
+                      "value":"${{ github.ref_name }}"
+                    },
+                    {
+                      "name":"Commit:",
+                      "value":"${{ github.sha }}"
+                    },
+                    {
+                      "name":"Release Name:",
+                      "value":"${{ github.event.release.name }}"
+                    },
+                    {
+                      "name":"Release Description :",
+                      "value":"${{ github.event.release.body }}"
+                    }
+                  ]
+                }
+              ],
+              "potentialAction":[
+                {
+                  "@type":"OpenUri",
+                  "name":"View on GitHub",
+                  "targets":[
+                    {
+                      "os":"default",
+                      "uri":"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                    }
+                  ]
+                }
+              ]
+            }
