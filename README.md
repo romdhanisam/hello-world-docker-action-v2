@@ -46,3 +46,6 @@ fatal: failed to write commit object
 
 > export GPG_TTY=$(tty)
 
+#### Microsoft Teams Notification
+
+![Microsoft Teams Notification](https://raw.githubusercontent.com/romdhanisam/hello-world-docker-action-v2/main/assets/Screenshot%202022-02-21%20at%2001.21.25.png?raw=true)
