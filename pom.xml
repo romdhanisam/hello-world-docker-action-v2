@@ -9,7 +9,6 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-
     <distributionManagement>
         <repository>
             <id>github</id>
