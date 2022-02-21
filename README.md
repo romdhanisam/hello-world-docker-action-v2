@@ -1,49 +1,51 @@
-# Hello world docker action
+# Hello world Github action
 
-This action prints "Hello World" or "Hello" + the name of a person to greet to the log.
+## Github release usage
 
-## Inputs
-
-## `who-to-greet`
-
-**Required** The name of the person to greet. Default `"World"`.
-
-## Outputs
-
-## `time`
-
-The time we greeted you.
-
-## Example usage
-
-uses: actions/hello-world-docker-action@v1
-with:
-  who-to-greet: 'Mona the Octocat'# hello-world-docker-action
-
-# Github release usage
-
-## add tag
+### Add tag
 > > git tag -a -m "Prepare release" v17
 >
 > > git push --follow-tags
 
-# Sign usage
+## Sign usage MAC
 
-## list of keys
+### List of keys
 > gpg --list-secret-keys --keyid-format=long
 -------------------------
-## generate key
+### Generate key
 
 > gpg --full-generate-key
 -------------------------
-## delete key
+### Delete key
 > gpg --delete-secret-key EB2A1CE10DE3E599**
 -------------------------
-## Set default secret
-> git config --global user.signingkey CD0C7DB15E9DD359**
--------------------------
-> > gpg -s --default-key CD0C7DB15E9DD359** input > output
+### Set default secret
+
+> Recommended
+> > git config --global user.signingkey CD0C7DB15E9DD359**
+> 
+>OR
+> > gpg -s --default-key CD0C7DB15E9DD359** input > output 
 > 
 > > gpg -d < input.gpg | head -1
--------------------------
-> gpg -s --default-key CD0C7DB15E9DD35**
+>
+> OR
+> > gpg -s --default-key CD0C7DB15E9DD35**
+
+### Set default secret
+https://github.com/settings/keys
+#### Add GPG key
+> gpg --armor --export CD0C7DB15E9DD35**
+
+
+-----------------------------
+#### Fix 
+error: gpg failed to sign the data
+
+fatal: failed to write commit object
+
+> export GPG_TTY=$(tty)
+
+#### Microsoft Teams Notification
+
+![Microsoft Teams Notification](https://raw.githubusercontent.com/romdhanisam/hello-world-docker-action-v2/main/assets/Screenshot%202022-02-21%20at%2001.21.25.png?raw=true)
