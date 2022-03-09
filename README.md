@@ -12,7 +12,7 @@
 ### List of keys
 > gpg --list-secret-keys --keyid-format=long
 -------------------------
-### Generate key
+### Generate key  
 
 > gpg --full-generate-key
 -------------------------
