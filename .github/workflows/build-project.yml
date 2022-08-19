@@ -3,7 +3,8 @@ name: Hello world Github action CI
 on:
   push:
     branches:
-      - main
+      - 'main'
+      - 'develop'
       - 'develop/**'
       - 'feature/**'
       - 'fix/**'
