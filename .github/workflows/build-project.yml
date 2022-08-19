@@ -6,8 +6,8 @@ on:
       - 'main'
       - 'develop'
       - 'develop/**'
-      - 'feature/**'
-      - 'fix/**'
+      - '!feature/**'
+      - '!fix/**'
 
 jobs:
   build:

@@ -1,0 +1,39 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - 'feature/ci'
+      - '!feature/connect-ci'
+
+jobs:
+  connect-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create report file
+        run: |
+          date +%s > report.txt
+          git status --porcelain
+          git config --global commit.gpgsign false
+          git config --global user.name '4 CI Robot'
+          git config --global user.email '111610370+4-ci-robot@users.noreply.github.com'
+          git checkout -b feature/connect-ci
+      - name: Check git config
+        run: |
+          git config --global --list
+          echo ${{ secrets.TOKEN_4_CI_ROBOT_ACTION }}
+      - name: Commit changes
+        id: commit
+        env:
+          CITOKEN: ${{ secrets.TOKEN_4_CI_ROBOT_ACTION }}
+        run: |
+          echo ${{ env.CITOKEN }}
+          git status
+          git add -A
+          curl whatthecommit.com/index.txt | git commit -F -
+          git log
+          git push ${{ secrets.TOKEN_4_CI_ROBOT_ACTION }}
+#          echo ${{ secrets.TOKEN_PERSONAL_CI }}
+#          git log
+#          git push ${{ secrets.TOKEN_PERSONAL_CI }}
