@@ -1,12 +1,12 @@
-package com.spring.professional.exam.tutorial.module03.question05.service;
+package eu.yayi.service;
 
-import com.spring.professional.exam.tutorial.module03.question05.dao.EmployeeDao;
+import eu.yayi.dao.EmployeeDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 
-import static com.spring.professional.exam.tutorial.module03.question05.util.SqlRowSetUtil.SqlRowSetToString;
+import static eu.yayi.util.SqlRowSetUtil.SqlRowSetToString;
 
 @Service
 public class EmployeeReportService {

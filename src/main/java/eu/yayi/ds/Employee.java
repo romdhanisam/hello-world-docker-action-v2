@@ -1,4 +1,4 @@
-package com.spring.professional.exam.tutorial.module03.question05.ds;
+package eu.yayi.ds;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

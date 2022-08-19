@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>tn.ensi-uma.hello-world-docker-action-parent</groupId>
-    <artifactId>hello-world-docker-action-parent</artifactId>
+    <groupId>eu.yayi</groupId>
+    <artifactId>hello-world-docker-action</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <distributionManagement>
         <repository>
@@ -28,10 +28,6 @@
         <maven.compiler.source>${java.source.target.version}</maven.compiler.source>
         <maven.compiler.target>${java.source.target.version}</maven.compiler.target>
     </properties>
-
-    <modules>
-        <module>hello-world-docker-action</module>
-    </modules>
 
     <dependencyManagement>
         <dependencies>
@@ -83,13 +79,30 @@
                 <version>5.4.2.Final</version>
                 <scope>runtime</scope>
             </dependency>
-
+        </dependencies>
+    </dependencyManagement>
+        <dependencies>
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>4.13.1</version>
                 <scope>test</scope>
             </dependency>
-        </dependencies>
-    </dependencyManagement>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-jdbc</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.hsqldb</groupId>
+                <artifactId>hsqldb</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+            </dependency>
+    </dependencies>
 </project>

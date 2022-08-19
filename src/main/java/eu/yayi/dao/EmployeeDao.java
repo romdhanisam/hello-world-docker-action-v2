@@ -1,6 +1,6 @@
-package com.spring.professional.exam.tutorial.module03.question05.dao;
+package eu.yayi.dao;
 
-import com.spring.professional.exam.tutorial.module03.question05.ds.Employee;
+import eu.yayi.ds.Employee;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

@@ -1,0 +1,31 @@
+
+
+# Eclipse
+.classpath
+.project
+.settings/
+ 
+# Intellij
+.idea
+.idea/
+.idea/*
+*.idea
+*.iml
+*.iws
+ 
+# Mac
+.DS_Store
+src/.DS_Store
+ 
+# Maven
+log/
+target/
+
+# mvn -N io.takari:maven:wrapper
+!.mvn/wrapper/maven-wrapper.jar
+
+# Eclipse m2e generated files
+# Eclipse Core
+.project
+# JDT-specific (Eclipse Java Development Tools)
+.classpath

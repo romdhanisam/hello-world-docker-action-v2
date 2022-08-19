@@ -1,4 +1,4 @@
-package com.spring.professional.exam.tutorial.module03.question05.util;
+package eu.yayi.util;
 
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
