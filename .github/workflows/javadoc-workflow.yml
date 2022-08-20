@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - 'feature/ci'
-      - '!feature/connect-ci'
 jobs:
   release:
     name: Java Docs Release
@@ -14,8 +13,7 @@ jobs:
       - name: Setup Environment
         uses: actions/checkout@v2
         with:
-          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
-          fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
+          ref: develop
 
       - name: Configure Git
         run: |
@@ -27,35 +25,33 @@ jobs:
         uses: crazy-max/ghaction-import-gpg@v5
         with:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY_ROBOT }}
-          fingerprint: ${{ secrets.SIGN_KEY_ROBOT }}
           git_user_signingkey: true
           git_commit_gpgsign: true
 
-      - name: Package
-        shell: bash
-        run: scripts/release-docs.sh
-        env:
-          TERM: xterm-256color
-
       - name: Create Pull Request branch
         run: |
-          git checkout -b gh-pages-pull-request
+          mvn clean javadoc:javadoc
+          rm -Rf docs/*
+          cp -Rf target/site/apidocs/* docs/
+          git add -A && curl whatthecommit.com/index.txt | git commit -F -
+          git checkout -b javadoc-pull-request
 
       # Note that will fail if branch already exists.
       - name: Push Git Branch
         uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: gh-pages-pull-request
+          branch: javadoc-pull-request
 
       # Note that will silently fail if PR already exists.
       - name: Create Pull Request
         uses: repo-sync/pull-request@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          source_branch: gh-pages-pull-request
-          destination_branch: gh-pages
+          source_branch: javadoc-pull-request
+          destination_branch: develop
           pr_title: "Docs: Update Java docs repository"
           pr_body: "Automatically created from CI workflow."
-          pr_assignee: "romdhanisam"
-          pr_label: "documentation"
+          pr_reviewer: ${{github.repository_owner}}
+          pr_assignee: ${{github.repository_owner}}
+          pr_label: "documentation,javadoc"
