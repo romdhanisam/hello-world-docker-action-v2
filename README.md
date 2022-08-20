@@ -1,5 +1,7 @@
-# Hello world Github action
+[![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/romdhanisam/hello-world-docker-action-v2/tree/develop)
+[![javadoc](https://javadoc.io/badge2/org.springframework/spring-core/javadoc.svg)](https://romdhanisam.github.io/hello-world-docker-action-v2/)
 
+# Hello world Github action
 ## Github release usage
 
 ### Add tag
@@ -23,10 +25,10 @@
 
 > Recommended
 > > git config --global user.signingkey CD0C7DB15E9DD359**
-> 
+>
 >OR
-> > gpg -s --default-key CD0C7DB15E9DD359** input > output 
-> 
+> > gpg -s --default-key CD0C7DB15E9DD359** input > output
+>
 > > gpg -d < input.gpg | head -1
 >
 > OR
@@ -39,13 +41,13 @@ https://github.com/settings/keys
 
 
 -----------------------------
-#### Fix 
+#### Fix
 error: gpg failed to sign the data
 
 fatal: failed to write commit object
 
 > export GPG_TTY=$(tty)
 
-#### Microsoft Teams Notification
+[comment]: <> (#### Microsoft Teams Notification)
 
-![Microsoft Teams Notification](https://raw.githubusercontent.com/romdhanisam/hello-world-docker-action-v2/main/assets/Screenshot%202022-02-21%20at%2001.21.25.png?raw=true)
+[comment]: <> (![Microsoft Teams Notification]&#40;https://raw.githubusercontent.com/romdhanisam/hello-world-docker-action-v2/main/assets/Screenshot%202022-02-21%20at%2001.21.25.png?raw=true&#41;)

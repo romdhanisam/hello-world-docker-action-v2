@@ -1,0 +1,57 @@
+name: Continuous Deployment - JavaDocs
+
+on:
+  push:
+    branches:
+      - 'feature/ci'
+jobs:
+  release:
+    name: Java Docs Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup Environment
+        uses: actions/checkout@v2
+        with:
+          ref: develop
+
+      - name: Configure Git
+        run: |
+          git config --global user.name '4 CI Robot'
+          git config --global user.email '111610370+4-ci-robot@users.noreply.github.com'
+
+      - name: Import GPG key
+        id: import_gpg
+        uses: crazy-max/ghaction-import-gpg@v5
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY_ROBOT }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+
+      - name: Create Pull Request branch
+        run: |
+          mvn clean javadoc:javadoc
+          rm -Rf docs/*
+          cp -Rf target/site/apidocs/* docs/
+          git add -A && curl whatthecommit.com/index.txt | git commit -F -
+          git checkout -b javadoc-pull-request
+
+      # Note that will fail if branch already exists.
+      - name: Push Git Branch
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: javadoc-pull-request
+
+      # Note that will silently fail if PR already exists.
+      - name: Create Pull Request
+        uses: repo-sync/pull-request@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          source_branch: javadoc-pull-request
+          destination_branch: develop
+          pr_title: "Docs: Update Java docs repository"
+          pr_body: "Automatically created from CI workflow."
+          pr_reviewer: ${{github.repository_owner}}
+          pr_assignee: ${{github.repository_owner}}
+          pr_label: "documentation,javadoc"
