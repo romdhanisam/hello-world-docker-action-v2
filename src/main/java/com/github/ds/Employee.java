@@ -1,4 +1,4 @@
-package eu.yayi.ds;
+package com.github.ds;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -3,7 +3,7 @@ name: ci
 on:
   push:
     branches:
-      - 'feature/ci'
+      - '!feature/ci'
       - '!feature/connect-ci'
 jobs:
   connect-ci:
