@@ -28,7 +28,7 @@ jobs:
       - name: change git branch
         run: |
           git pull
-          git checkout -b feature/connect-ci
+          git checkout -b feature/ci-connect
           date +%s > report.txt
           git status --porcelain
       - name: Commit changes
@@ -38,4 +38,13 @@ jobs:
           git add .
           curl whatthecommit.com/index.txt | git commit -S -F -
           git log
-          git push ${{ secrets.TOKEN_4_CI_ROBOT_ACTION }}
+          git push -f ${{ secrets.TOKEN_4_CI_ROBOT_ACTION }}
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          commit-message: update report Message
+          title: Update report
+          body: Update report to reflect release changes
+          branch: feature/ci-connect
+          base: feature/ci
+          labels: dependencies-PR, automated-PR
