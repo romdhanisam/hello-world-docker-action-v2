@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"eu.yayi.ds","l":"Employee"},{"p":"eu.yayi.dao","l":"EmployeeDao"},{"p":"eu.yayi.service","l":"EmployeeReportService"},{"p":"eu.yayi","l":"SpringBootConsoleApplication"},{"p":"eu.yayi.util","l":"SqlRowSetUtil"}]
