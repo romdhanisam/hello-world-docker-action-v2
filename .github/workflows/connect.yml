@@ -39,7 +39,7 @@ jobs:
           git checkout -b feature/connect-${{ github.sha }}
       - name: List keys
         run: |
-          gpg -K 
+          gpg -K  
           gpg -s --default-key ${{ secrets.SIGN_KEY_ROBOT }}
       - name: Commit changes
         id: commit
