@@ -1,12 +1,12 @@
-package eu.yayi.service;
+package com.github.service;
 
-import eu.yayi.dao.EmployeeDao;
+import com.github.dao.EmployeeDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 
-import static eu.yayi.util.SqlRowSetUtil.SqlRowSetToString;
+import static com.github.util.SqlRowSetUtil.SqlRowSetToString;
 
 @Service
 public class EmployeeReportService {
@@ -14,6 +14,9 @@ public class EmployeeReportService {
     @Autowired
     private EmployeeDao employeeDao;
 
+    /**
+     * Print Report
+     */
     public void printReport() {
         System.out.println("Employee Report Start");
 

@@ -1,6 +1,6 @@
-package eu.yayi.dao;
+package com.github.dao;
 
-import eu.yayi.ds.Employee;
+import com.github.ds.Employee;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
