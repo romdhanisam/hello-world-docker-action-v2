@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.github"},{"l":"com.github.dao"},{"l":"com.github.ds"},{"l":"com.github.service"},{"l":"com.github.util"}]
