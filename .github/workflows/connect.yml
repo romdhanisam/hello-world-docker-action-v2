@@ -1,0 +1,50 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - '!feature/ci'
+      - '!feature/connect-ci'
+jobs:
+  connect-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: create report file
+        run: |
+          git config --global user.name '4 CI Robot'
+          git config --global user.email '111610370+4-ci-robot@users.noreply.github.com'
+      - name: Import GPG key
+        id: import_gpg
+        uses: crazy-max/ghaction-import-gpg@v5
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY_ROBOT }}
+          fingerprint: ${{ secrets.SIGN_KEY_ROBOT }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+      - name: check git config
+        run: |
+          git config --global --list
+      - name: change git branch
+        run: |
+          git pull
+          git checkout -b feature/ci-connect
+          date +%s > report.txt
+          git status --porcelain
+      - name: Commit changes
+        id: commit
+        run: |
+          git status --porcelain
+          git add .
+          curl whatthecommit.com/index.txt | git commit -S -F -
+          git log
+          git push -f ${{ secrets.TOKEN_4_CI_ROBOT_ACTION }}
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          commit-message: update report Message
+          title: Update report
+          body: Update report to reflect release changes
+          branch: feature/ci-connect
+          base: feature/ci
+          labels: dependencies-PR, automated-PR

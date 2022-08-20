@@ -1,6 +1,6 @@
-package eu.yayi;
+package com.github;
 
-import eu.yayi.service.EmployeeReportService;
+import com.github.service.EmployeeReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

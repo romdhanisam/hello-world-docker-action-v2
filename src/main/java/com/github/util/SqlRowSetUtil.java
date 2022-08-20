@@ -1,4 +1,4 @@
-package eu.yayi.util;
+package com.github.util;
 
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
