@@ -47,7 +47,7 @@ jobs:
           gpg --list-secret-keys --keyid-format=long
       - name: set user signingKey
         run: |
-          git config --global commit.gpgSign true
+          git config commit.gpgsign true
           git config --global user.signingKey ${{ secrets.SIGN_KEY_ROBOT }}
       - name: check git config II
         run: |
